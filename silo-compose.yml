@@ -1,0 +1,17 @@
+services:
+  silo:
+    container_name: ${COMPOSE_PROJECT_NAME:-project}-silo-container
+    image: ${COMPOSE_PROJECT_NAME:-project}-silo
+    build:
+      context: .
+      dockerfile: silo.Dockerfile
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/home/ubuntu/workspace
+      - silo-local:/home/ubuntu/.local
+      - silo-cache:/home/ubuntu/.cache
+
+volumes:
+  silo-local:
+  silo-cache:
