@@ -7,11 +7,6 @@ services:
       dockerfile: silo.Dockerfile
     tty: true
     stdin_open: true
+    stop_grace_period: 0s
     volumes:
       - .:/home/ubuntu/workspace
-      - silo-local:/home/ubuntu/.local
-      - silo-cache:/home/ubuntu/.cache
-
-volumes:
-  silo-local:
-  silo-cache:
