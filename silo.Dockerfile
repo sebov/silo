@@ -29,11 +29,10 @@ RUN mkdir -p /home/ubuntu/.local /home/ubuntu/.cache /home/ubuntu/workspace \
 USER ubuntu
 WORKDIR /home/ubuntu/workspace
 
-RUN curl -fsSL https://ollama.com/install.sh | sh
+RUN curl https://mise.run | sh
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh 
 RUN curl -fsSL https://opencode.ai/install | bash
 RUN curl -fsSL https://claude.ai/install.sh | bash
-RUN curl -LsSf https://astral.sh/uv/install.sh | sh 
-RUN curl https://mise.run | sh
 
 # additional setup for uv and mise
 RUN $HOME/.local/bin/uv python install 3.12 \
