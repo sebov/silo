@@ -14,9 +14,9 @@ services:
       - UV_PROJECT_ENVIRONMENT=/silo-venv
     volumes:
       - .:/home/ubuntu/workspace
-      - ~/.agents-silo:/home/ubuntu/.agents
-      - ~/.config-silo/opencode:/home/ubuntu/.config/opencode
-      - ~/.local-silo/share/opencode:/home/ubuntu/.local/share/opencode
+      - ~/.silo/agents:/home/ubuntu/.agents
+      - ~/.silo/config/opencode:/home/ubuntu/.config/opencode
+      - ~/.silo/local/share/opencode:/home/ubuntu/.local/share/opencode
       - silo-venv:/silo-venv
     command: >
       bash -c "sudo chown -R ubuntu:ubuntu /silo-venv && bash"
