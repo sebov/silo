@@ -35,7 +35,7 @@ RUN curl -fsSL https://opencode.ai/install | bash
 
 # additional setup for uv and mise
 RUN $HOME/.local/bin/uv python install 3.12 \
-    && $HOME/.local/bin/mise use node@24 usage --global \
+    && $HOME/.local/bin/mise use bun@latest node@24 usage --global \
     && echo 'source <(uv generate-shell-completion bash)' >> ~/.bashrc \
     && echo 'source <(uvx --generate-shell-completion bash)' >> ~/.bashrc \
     && echo 'source <(mise activate bash --shims)' >> ~/.bashrc \
