@@ -7,7 +7,7 @@ ENV LC_ALL=en_US.UTF-8
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 RUN apt-get update && apt-get install -y -qq --no-install-recommends \
-    build-essential curl ca-certificates fd-find fzf git git-lfs htop iputils-ping locales nano ncdu ripgrep sudo tar unzip wget zip zstd \
+    build-essential curl ca-certificates fd-find fzf git git-lfs htop iputils-ping locales nano ncdu neovim ripgrep sudo tar tmux unzip wget zip zstd \
     && locale-gen en_US.UTF-8 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
