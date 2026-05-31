@@ -42,6 +42,6 @@ container tries to read or write to them.
 ### Running
 
 ```bash
-docker compose -f silo-compose.yml up -d
-docker compose -f silo-compose.yml exec silo bash
+docker compose -f silo.compose.yml up -d
+docker compose -f silo.compose.yml exec silo bash
 ```
