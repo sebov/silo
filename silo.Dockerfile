@@ -39,7 +39,7 @@ RUN curl -fsSL https://opencode.ai/v2/install | bash
 ENV PATH="/home/ubuntu/.local/share/mise/shims:/home/ubuntu/.local/bin:$PATH"
 
 RUN uv python install 3.12 \
-    && mise use node@22 pnpm usage --global \
+    && mise use node@24 pnpm usage --global \
     && echo 'source <(uv generate-shell-completion bash)' >> ~/.bashrc \
     && echo 'source <(uvx --generate-shell-completion bash)' >> ~/.bashrc \
     && echo 'source <(mise completion bash --include-bash-completion-lib)' >> ~/.bashrc \
