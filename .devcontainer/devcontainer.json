@@ -1,0 +1,50 @@
+// Dev Container for the "silo" stack.
+// Mode: Docker Compose - reuses the existing silo.compose.yml (single source of truth:
+// GPU reservation, volumes, ports, tty). VS Code runs `docker compose up`
+// and connects to the `silo` service.
+//
+// Start in VS Code: Command Palette -> "Dev Containers: Reopen in Container"
+// (or the "><" icon in the bottom-left corner).
+{
+  "$schema": "https://raw.githubusercontent.com/devcontainers/spec/main/schemas/devContainer.schema.json",
+
+  "name": "silo (compose)",
+
+  // Paths are relative to THIS file, so from .devcontainer/ we go up to ../silo.compose.yml
+  "dockerComposeFile": ["../silo.compose.yml"],
+
+  // Service from the compose file that VS Code connects to
+  "service": "silo",
+
+  // Start only this service. Once a `db` service is added, change to: ["silo", "db"]
+  "runServices": ["silo"],
+
+  // Directory opened inside the container - must match the volume in compose (.:/home/ubuntu/workspace)
+  "workspaceFolder": "/home/ubuntu/workspace",
+
+  // The image sets `USER ubuntu`
+  "remoteUser": "ubuntu",
+
+  // Defaults to false for Compose: do NOT override the `command: bash ...` from compose.
+  // (tty: true + stdin_open: true keep the container alive, so attach works)
+  "overrideCommand": false,
+
+  // On window close, stop the Compose stack started by VS Code (containers stop; named volumes persist).
+  // Set to "none" to keep the stack running after the window is closed.
+  "shutdownAction": "stopCompose",
+
+  // NOTE: ports 3000/3001 are already published in compose (`ports:`),
+  // so `forwardPorts` is intentionally omitted here (it would be redundant).
+
+  // Compose bind-mounts ~/.silo/... from the host; if those directories do not exist,
+  // Docker creates them as root. Create them on the host before the container starts.
+  "initializeCommand": "mkdir -p ~/.silo/agents ~/.silo/config/opencode ~/.silo/local/share/opencode",
+
+  // The extension installs in the CONTAINER, so it sees container paths
+  // (/home/ubuntu/workspace) - this fixes the host<->container path mismatch in openchamber sessions.
+  "customizations": {
+    "vscode": {
+      "extensions": ["fedaykindev.openchamber"]
+    }
+  }
+}
