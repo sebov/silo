@@ -18,15 +18,16 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - UV_PROJECT_ENVIRONMENT=/silo-venv
+      - UV_PROJECT_ENVIRONMENT=/silo-env/.venv
+      - UV_CACHE_DIR=/silo-env/.cache/uv
     volumes:
       - .:/home/ubuntu/workspace
       - ~/.silo/agents:/home/ubuntu/.agents
       - ~/.silo/config/opencode:/home/ubuntu/.config/opencode
       - ~/.silo/local/share/opencode:/home/ubuntu/.local/share/opencode
-      - silo-venv:/silo-venv
+      - silo-env:/silo-env
     command: >
-      bash -c "sudo chown -R ubuntu:ubuntu /silo-venv && bash"
+      bash -c "sudo chown -R ubuntu:ubuntu /silo-env && bash"
 
 volumes:
-  silo-venv:
+  silo-env:
