@@ -1,0 +1,29 @@
+[project]
+name = "silo"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "ipykernel>=7.4.0",
+    "poethepoet>=0.48.0",
+    "torch",
+    "torchvision",
+]
+
+[tool.uv.sources]
+torch = [
+    { index = "pytorch-cu132" },
+]
+torchvision = [
+    { index = "pytorch-cu132" },
+]
+
+[[tool.uv.index]]
+name = "pytorch-cu132"
+url = "https://download.pytorch.org/whl/cu132"
+explicit = true
+
+[tool.poe.tasks]
+silo_build = "docker compose -f silo.compose.yml build --no-cache"
+silo_up = "docker compose -f silo.compose.yml up -d"
+silo_down = "docker compose -f silo.compose.yml down"
+silo_down_v = "docker compose -f silo.compose.yml down -v"
